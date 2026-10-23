@@ -17,7 +17,14 @@ Requirements: `python3`, and the `claude` CLI on your PATH.
 ./install.sh
 ```
 
-This creates a venv at `~/.claude/chromiumfish/venv`, installs `chromiumfish[mcp]`, downloads the browser binary (`~/.cache/chromiumfish/`), symlinks the wrapper into place, and registers the server at **user scope** (`~/.claude.json`), so it loads in every Claude Code project on the machine.
+This creates a venv at `~/.claude/chromiumfish/venv`, installs `chromiumfish[mcp]`, downloads the browser binary (`~/.cache/chromiumfish/`), symlinks the wrapper into place, links the `chromiumfish` CLI into `~/.local/bin`, and registers the server at **user scope** (`~/.claude.json`), so it loads in every Claude Code project on the machine.
+
+### Shared install for other tools
+
+Other tools on the machine use the same install instead of their own:
+
+- **CLI:** `chromiumfish` on PATH (`~/.local/bin/chromiumfish`, override with `CF_BIN_DIR`). Tools find it by name, e.g. to run `chromiumfish mcp` or `chromiumfish serve`.
+- **Browser:** `~/.cache/chromiumfish/<version>/<platform>/`, chromiumfish's own cache (override with `CHROMIUMFISH_CACHE_DIR`), shared by every chromiumfish install.
 
 Restart Claude Code (or approve the new server when prompted) — the tools then appear as `mcp__chromiumfish-web__websearch` / `mcp__chromiumfish-web__webfetch`.
 
